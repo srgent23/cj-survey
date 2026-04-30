@@ -1604,7 +1604,7 @@ function startAssessment() {
 function showScreen(name) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + name).classList.add('active');
-  window.scrollTo(0,0);
+  setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
 }
 
 // ══════════════════════════════════════════════
@@ -1696,7 +1696,6 @@ function renderDimension(dimIdx) {
   `;
 
   document.getElementById('assessmentBody').innerHTML = html;
-  window.scrollTo(0, 0);
 }
 
 function selectAnswer(dimIdx, qIdx, score) {
@@ -1713,6 +1712,7 @@ function setConfidence(dimId, level) {
 function navDim(dir) {
   currentDim = Math.max(0, Math.min(DIMENSIONS.length-1, currentDim + dir));
   renderDimension(currentDim);
+  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
 }
 
 // ══════════════════════════════════════════════
