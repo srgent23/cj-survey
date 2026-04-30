@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JourneyIQ | B&P Journey Readiness Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Epilogue:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #001E38;
+  --navy-mid: #002A4E;
+  --navy-light: #0D3A5C;
+  --red: #D6291A;
+  --red-bright: #EF4638;
+  --smoke: #F7F6F5;
+  --white: #FFFFFF;
+  --gold: #C9A84C;
+  --green: #1A7A44;
+  --green-light: #E8F5EE;
+  --amber: #B8620A;
+  --amber-light: #FDF3E7;
+  --steel: #4A6FA5;
+  --steel-light: #EEF2F8;
+  --ink: #1A1A2E;
+  --ink-mid: #3D3D5C;
+  --ink-dim: #6B6B8A;
+  --border: #E2E0DC;
+  --border-dark: #C8C4BE;
+  --bg: #FAFAF8;
+  --tile: #FFFFFF;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── SCREENS ─────────────────────────────────────── */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+
+/* ── INTRO SCREEN ────────────────────────────────── */
+#screen-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.intro-left {
+  background: var(--navy);
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-left::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  border: 1px solid rgba(247,246,245,0.06);
+  border-radius: 50%;
+}
+
+.intro-left::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; left: -60px;
+  width: 500px; height: 500px;
+  border: 1px solid rgba(247,246,245,0.04);
+  border-radius: 50%;
+}
+
+.intro-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-mark {
+  width: 44px; height: 44px;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgba(247,246,245,0.9);
+  letter-spacing: 0.04em;
+}
+
+.intro-hero { position: relative; z-index: 1; }
+
+.intro-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  margin-bottom: 20px;
+}
+
+.intro-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1.1;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+
+.intro-title em {
+  font-style: italic;
+  color: rgba(247,246,245,0.6);
+}
+
+.intro-desc {
+  font-size: 15px;
+  color: rgba(247,246,245,0.65);
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+.intro-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.intro-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(247,246,245,0.45);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+.intro-meta-dot {
+  width: 4px; height: 4px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.intro-right {
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+
+.intro-form-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.intro-form-sub {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  border: 1px solid var(--border-dark);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+
+.form-input:focus { border-color: var(--navy); }
+
+.form-input::placeholder { color: var(--ink-dim); opacity: 0.6; }
+
+.dimension-preview {
+  margin: 32px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.dim-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-mid);
+}
+
+.dim-pill-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--red);
+  font-weight: 500;
+}
+
+.btn-start {
+  background: var(--navy);
+  border: none;
+  color: white;
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: background 0.15s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-start:hover { background: var(--navy-light); }
+
+.btn-start svg { transition: transform 0.2s; }
+.btn-start:hover svg { transform: translateX(4px); }
+
+.intro-disclaimer {
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--ink-dim);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── ASSESSMENT SCREEN ───────────────────────────── */
+#screen-assessment {
+  background: var(--bg);
+}
+
+.assessment-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.assessment-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assessment-logo .logo-mark {
+  width: 32px; height: 32px;
+  font-size: 12px;
+}
+
+.assessment-logo-text {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.progress-container {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 48px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-dim);
+  letter-spacing: 0.06em;
+}
+
+.progress-track {
+  height: 3px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--red);
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.progress-dim-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.assessment-body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 60px 48px;
+}
+
+.dimension-header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dimension-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.dimension-number {
+  width: 22px; height: 22px;
+  background: var(--red);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.dimension-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+
+.dimension-subtitle {
+  font-size: 15px;
+  color: var(--ink-dim);
+  font-style: italic;
+}
+
+.dimension-logic {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  padding: 16px 20px;
+  background: var(--steel-light);
+  border-left: 3px solid var(--steel);
+}
+
+/* QUESTION CARD */
+.question-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  animation: slideUp 0.4s ease both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question-card:nth-child(2) { animation-delay: 0.05s; }
+.question-card:nth-child(3) { animation-delay: 0.1s; }
+.question-card:nth-child(4) { animation-delay: 0.15s; }
+.question-card:nth-child(5) { animation-delay: 0.2s; }
+.question-card:nth-child(6) { animation-delay: 0.25s; }
+
+.question-top {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.question-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.question-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.question-artifact {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--ink-dim);
+  font-style: italic;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.artifact-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--steel);
+  background: var(--steel-light);
+  padding: 2px 6px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.question-options {
+  padding: 4px 0;
+}
+
+.option-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background 0.12s;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.option-row:last-child { border-bottom: none; }
+
+.option-row:hover { background: var(--smoke); }
+
+.option-row.selected {
+  background: #F0F4F8;
+}
+
+.option-row.selected::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--navy);
+}
+
+.option-radio {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border-dark);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.12s;
+}
+
+.option-row.selected .option-radio {
+  border-color: var(--navy);
+  background: var(--navy);
+}
+
+.option-row.selected .option-radio::after {
+  content: '';
+  width: 6px; height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.option-score {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-dim);
+  width: 16px;
+  flex-shrink: 0;
+  margin-right: 12px;
+  margin-top: 3px;
+}
+
+.option-row.selected .option-score { color: var(--navy); font-weight: 500; }
+
+.option-text {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.option-row.selected .option-text { color: var(--ink); }
+
+/* CONFIDENCE SELECTOR */
+.confidence-section {
+  padding: 20px 28px;
+  background: var(--smoke);
+  border-top: 1px solid var(--border);
+}
+
+.confidence-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 10px;
+}
+
+.confidence-options {
+  display: flex;
+  gap: 8px;
+}
+
+.conf-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-dark);
+  background: white;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 12px;
+  color: var(--ink-mid);
+  cursor: pointer;
+  transition: all 0.12s;
+  text-align: center;
+}
+
+.conf-btn:hover { border-color: var(--navy); }
+
+.conf-btn.selected {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: white;
+}
+
+/* DIMENSION NAV */
+.dimension-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+}
+
+.btn-prev {
+  background: transparent;
+  color: var(--ink-dim);
+  border: 1px solid var(--border-dark);
+}
+
+.btn-prev:hover { border-color: var(--navy); color: var(--navy); }
+
+.btn-next {
+  background: var(--navy);
+  color: white;
+}
+
+.btn-next:hover { background: var(--navy-light); }
+
+.btn-next:disabled {
+  background: var(--border-dark);
+  cursor: not-allowed;
+}
+
+.nav-completion {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+.nav-completion span { color: var(--navy); font-weight: 500; }
+
+/* ── RESULTS SCREEN ──────────────────────────────── */
+#screen-results {
+  background: var(--bg);
+}
+
+.results-header {
+  background: var(--navy);
+  padding: 48px 64px 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.results-header::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border: 1px solid rgba(247,246,245,0.05);
+  border-radius: 50%;
+}
+
+.results-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.results-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  margin-bottom: 12px;
+}
+
+.results-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.results-subtitle {
+  font-size: 15px;
+  color: rgba(247,246,245,0.55);
+  margin-bottom: 32px;
+}
+
+.results-meta-strip {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.results-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.results-meta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,246,245,0.4);
+}
+
+.results-meta-value {
+  font-size: 14px;
+  color: rgba(247,246,245,0.85);
+  font-weight: 500;
+}
+
+.results-meta-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(247,246,245,0.1);
+}
+
+/* OVERALL SCORE */
+.overall-score-block {
+  background: white;
+  border: 1px solid rgba(247,246,245,0.1);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.overall-score-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--navy);
+  letter-spacing: -2px;
+}
+
+.overall-score-denom {
+  font-size: 18px;
+  color: var(--ink-dim);
+  font-weight: 300;
+}
+
+.overall-score-divider {
+  width: 1px;
+  height: 56px;
+  background: var(--border);
+}
+
+.overall-score-label {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.overall-score-desc {
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+/* RESULTS BODY */
+.results-body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 64px;
+}
+
+.results-section-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+
+.results-section-sub {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-bottom: 32px;
+}
+
+/* RADAR + DIMENSION SCORES */
+.results-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.radar-panel {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radar-panel-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 28px;
+  align-self: flex-start;
+}
+
+#radarChart {
+  width: 100%;
+  max-width: 340px;
+}
+
+.dimension-scores-panel {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 32px 36px;
+}
+
+.dim-score-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+  animation: slideUp 0.4s ease both;
+}
+
+.dim-score-row:last-child { border-bottom: none; }
+
+.dim-score-row:nth-child(1) { animation-delay: 0.1s; }
+.dim-score-row:nth-child(2) { animation-delay: 0.15s; }
+.dim-score-row:nth-child(3) { animation-delay: 0.2s; }
+.dim-score-row:nth-child(4) { animation-delay: 0.25s; }
+.dim-score-row:nth-child(5) { animation-delay: 0.3s; }
+.dim-score-row:nth-child(6) { animation-delay: 0.35s; }
+
+.dim-score-name {
+  flex: 1;
+}
+
+.dim-score-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.dim-score-sublabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+
+.dim-score-bar-wrap {
+  width: 140px;
+}
+
+.dim-score-bar-track {
+  height: 6px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.dim-score-bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+.dim-score-benchmark {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+
+.dim-score-value {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  width: 32px;
+  text-align: right;
+}
+
+.dim-maturity-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  width: 88px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.badge-reactive { background: #FDE8E8; color: #9B1C1C; }
+.badge-aware { background: var(--amber-light); color: var(--amber); }
+.badge-structured { background: var(--steel-light); color: var(--steel); }
+.badge-leading { background: var(--green-light); color: var(--green); }
+
+.conf-indicator {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+.conf-high { border-color: var(--green); color: var(--green); }
+.conf-mixed { border-color: var(--amber); color: var(--amber); }
+.conf-self { border-color: var(--ink-dim); color: var(--ink-dim); }
+
+/* PRIORITY STACK */
+.priority-stack {
+  margin-top: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.priority-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 32px 36px;
+  position: relative;
+  animation: slideUp 0.4s ease both;
+}
+
+.priority-card:nth-child(1) { animation-delay: 0.1s; }
+.priority-card:nth-child(2) { animation-delay: 0.18s; }
+.priority-card:nth-child(3) { animation-delay: 0.26s; }
+
+.priority-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.priority-1::before { background: var(--red); }
+.priority-2::before { background: var(--amber); }
+.priority-3::before { background: var(--steel); }
+
+.priority-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.priority-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.priority-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+}
+
+.type-optimize { background: var(--green-light); color: var(--green); }
+.type-build { background: var(--steel-light); color: var(--steel); }
+
+.priority-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.priority-desc {
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.timeline-strip {
+  display: flex;
+  gap: 6px;
+}
+
+.timeline-item {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+}
+
+.timeline-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+}
+
+.timeline-action {
+  color: var(--ink);
+  line-height: 1.4;
+  font-size: 11px;
+}
+
+.peer-benchmark {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--smoke);
+  border-left: 3px solid var(--border-dark);
+  font-size: 12px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+.peer-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* NEXT STEPS PANEL */
+.next-steps-panel {
+  background: var(--navy);
+  margin-top: 2px;
+  padding: 48px 56px;
+}
+
+.next-steps-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.next-steps-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.next-steps-sub {
+  font-size: 13px;
+  color: rgba(247,246,245,0.5);
+  margin-bottom: 36px;
+}
+
+.next-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+
+.next-step-card {
+  background: rgba(247,246,245,0.05);
+  border: 1px solid rgba(247,246,245,0.08);
+  padding: 28px 28px;
+}
+
+.next-step-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  margin-bottom: 16px;
+}
+
+.next-step-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.next-step-items li {
+  font-size: 13px;
+  color: rgba(247,246,245,0.75);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.next-step-items li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--red-bright);
+  font-size: 11px;
+}
+
+/* FOOTER */
+.results-footer {
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 24px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-size: 12px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-action {
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  border: none;
+}
+
+.btn-retake {
+  background: transparent;
+  border: 1px solid var(--border-dark);
+  color: var(--ink-mid);
+}
+
+.btn-retake:hover { border-color: var(--navy); color: var(--navy); }
+
+.btn-print {
+  background: var(--navy);
+  color: white;
+}
+
+.btn-print:hover { background: var(--navy-light); }
+
+/* PRINT */
+@media print {
+  .assessment-header, .btn-action, .results-footer .footer-actions { display: none; }
+  .screen { display: block !important; }
+  #screen-intro, #screen-assessment { display: none !important; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  #screen-intro { grid-template-columns: 1fr; }
+  .intro-left { display: none; }
+  .results-top-grid, .priority-stack, .next-steps-grid { grid-template-columns: 1fr; }
+  .results-body { padding: 36px 24px; }
+  .results-header { padding: 36px 24px; }
+  .assessment-body { padding: 36px 24px; }
+  .assessment-header { padding: 16px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 1: INTRO
+══════════════════════════════════════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-left">
+    <div class="intro-logo">
+      <div class="logo-mark">IQ</div>
+      <div class="logo-text">JourneyIQ</div>
+    </div>
+    <div class="intro-hero">
+      <div class="intro-eyebrow">Billing &amp; Payments | CX Assessment</div>
+      <div class="intro-title">Where does your<br><em>B&amp;P journey</em><br>actually stand?</div>
+      <div class="intro-desc">A structured maturity assessment for utility CX leaders. Six dimensions, thirty-six questions, one report worth bringing to a peer conversation.</div>
+    </div>
+    <div class="intro-meta">
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div>36 questions across 6 dimensions</div>
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div>Benchmarked against Chartwell 2024 industry data</div>
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div>15–20 minutes to complete</div>
+      <div class="intro-meta-item"><div class="intro-meta-dot"></div>Instant scored report — no submission required</div>
+    </div>
+  </div>
+  <div class="intro-right">
+    <div class="intro-form-title">Start your assessment</div>
+    <div class="intro-form-sub">Your responses stay in your browser. Nothing is submitted or stored externally.</div>
+    <div class="form-field">
+      <label class="form-label">Your name</label>
+      <input class="form-input" type="text" id="userName" placeholder="e.g. Alex Chen">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Utility name</label>
+      <input class="form-input" type="text" id="utilityName" placeholder="e.g. Midwest Energy Co.">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Your role</label>
+      <input class="form-input" type="text" id="userRole" placeholder="e.g. Director, Customer Experience">
+    </div>
+    <div class="dimension-preview">
+      <div class="dim-pill"><span class="dim-pill-num">D1</span> VoC Coverage</div>
+      <div class="dim-pill"><span class="dim-pill-num">D2</span> Signal-to-Action</div>
+      <div class="dim-pill"><span class="dim-pill-num">D3</span> Digital Execution</div>
+      <div class="dim-pill"><span class="dim-pill-num">D4</span> Proactive Comms</div>
+      <div class="dim-pill"><span class="dim-pill-num">D5</span> CX Governance</div>
+      <div class="dim-pill"><span class="dim-pill-num">D6</span> Ops Enablement</div>
+    </div>
+    <button class="btn-start" onclick="startAssessment()">
+      Begin Assessment
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+    </button>
+    <div class="intro-disclaimer">Developed by a utility CX practitioner. Benchmarks sourced from Chartwell 2024 Payment Industry Survey and peer utility case studies.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 2: ASSESSMENT
+══════════════════════════════════════════════ -->
+<div id="screen-assessment" class="screen">
+  <div class="assessment-header">
+    <div class="assessment-logo">
+      <div class="logo-mark">IQ</div>
+      <div class="assessment-logo-text">JourneyIQ</div>
+    </div>
+    <div class="progress-container">
+      <div class="progress-label">
+        <span id="progressDimLabel">D1 | VoC Coverage</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="progress-dim-label" id="progressDimRight">Dimension 1 of 6</div>
+  </div>
+  <div class="assessment-body" id="assessmentBody">
+    <!-- injected by JS -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 3: RESULTS
+══════════════════════════════════════════════ -->
+<div id="screen-results" class="screen">
+  <div class="results-header">
+    <div class="results-header-inner">
+      <div class="results-eyebrow">B&amp;P Journey Readiness Report</div>
+      <div class="results-title" id="resultsTitle">Readiness Report</div>
+      <div class="results-subtitle" id="resultsSubtitle"></div>
+      <div class="results-meta-strip">
+        <div class="results-meta-item">
+          <div class="results-meta-label">Respondent</div>
+          <div class="results-meta-value" id="metaName">—</div>
+        </div>
+        <div class="results-meta-divider"></div>
+        <div class="results-meta-item">
+          <div class="results-meta-label">Utility</div>
+          <div class="results-meta-value" id="metaUtility">—</div>
+        </div>
+        <div class="results-meta-divider"></div>
+        <div class="results-meta-item">
+          <div class="results-meta-label">Role</div>
+          <div class="results-meta-value" id="metaRole">—</div>
+        </div>
+        <div class="results-meta-divider"></div>
+        <div class="results-meta-item">
+          <div class="results-meta-label">Completed</div>
+          <div class="results-meta-value" id="metaDate">—</div>
+        </div>
+      </div>
+      <div class="overall-score-block">
+        <div>
+          <div class="overall-score-num" id="overallScoreNum">—<span class="overall-score-denom">/4.0</span></div>
+        </div>
+        <div class="overall-score-divider"></div>
+        <div>
+          <div class="overall-score-label" id="overallScoreLabel">—</div>
+          <div class="overall-score-desc" id="overallScoreDesc">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-body">
+    <!-- RADAR + DIM SCORES -->
+    <div style="margin-bottom: 12px;">
+      <div class="results-section-title">Maturity Profile</div>
+      <div class="results-section-sub">Your scores across all six dimensions, benchmarked against the Chartwell 2024 industry median.</div>
+    </div>
+    <div class="results-top-grid">
+      <div class="radar-panel">
+        <div class="radar-panel-title">Six-Dimension Radar | Your Score vs. Industry Median</div>
+        <svg id="radarChart" viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div style="display:flex;gap:20px;margin-top:20px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-dim);">
+            <div style="width:16px;height:2px;background:var(--navy);"></div> Your score
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-dim);">
+            <div style="width:16px;height:2px;background:var(--border-dark);border-top:1px dashed var(--border-dark);"></div> Industry median
+          </div>
+        </div>
+      </div>
+      <div class="dimension-scores-panel" id="dimScoresPanel">
+        <!-- injected -->
+      </div>
+    </div>
+
+    <!-- PRIORITY STACK -->
+    <div style="margin: 48px 0 12px;">
+      <div class="results-section-title">Priority Stack</div>
+      <div class="results-section-sub">Your three lowest-scoring dimensions with specific recommendations, time-horizons, and peer benchmarks.</div>
+    </div>
+    <div class="priority-stack" id="priorityStack">
+      <!-- injected -->
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="next-steps-panel">
+    <div class="next-steps-inner">
+      <div class="next-steps-title">Your 30 / 60 / 90 Day Roadmap</div>
+      <div class="next-steps-sub">Sequenced actions based on your priority stack. Optimize moves first — then build.</div>
+      <div class="next-steps-grid" id="nextStepsGrid">
+        <!-- injected -->
+      </div>
+    </div>
+  </div>
+
+  <div class="results-footer">
+    <div class="footer-left">
+      JourneyIQ | B&amp;P Journey Readiness Report &nbsp;·&nbsp; Benchmarks: Chartwell 2024 Payment Industry Survey &amp; peer utility case studies<br>
+      This report is for internal benchmarking purposes. Scores are directional based on self-assessment.
+    </div>
+    <div class="footer-actions">
+      <button class="btn-action btn-retake" onclick="retake()">Retake Assessment</button>
+      <button class="btn-action btn-print" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// DATA: ASSESSMENT QUESTIONS
+// ══════════════════════════════════════════════
+const DIMENSIONS = [
+  {
+    id: 'D1', label: 'VoC Coverage',
+    subtitle: 'Do you hear from customers at the moments that matter?',
+    logic: 'This dimension scores whether the utility has ears at the right touchpoints — not just annual surveys, but transactional signals at the exact moments where trust is built or broken in the billing and payments journey.',
+    benchmark: 'A score of 3 or above on D1 places a utility in the leading quartile for VoC coverage in the Billing & Payments journey.',
+    industryMedian: 1.8,
+    questions: [
+      { text: 'Do you capture customer feedback at digital payment touchpoints?', artifact: 'Qualtrics/survey platform config showing active payment touchpoint surveys',
+        options: ['No transactional survey exists at any payment touchpoint','Survey exists at one channel (e.g. web only) but not others','Survey exists across web and app; results reviewed periodically','Transactional survey across all digital channels; results feed a defined review cadence with named owner'] },
+      { text: 'Do you capture feedback specifically after an AutoPay enrollment, failure, or cancellation?', artifact: 'Survey trigger configuration or email/SMS sequence tied to AutoPay events',
+        options: ['No — AutoPay events are not a VoC trigger','Enrollment is surveyed; failure and cancellation are not','At least two of three events trigger feedback capture','All three events trigger feedback; failure and cancellation data reviewed separately from general payment ease scores'] },
+      { text: 'Are inbound contact center reason codes mapped to journey stages?', artifact: 'Contact reason code taxonomy or reporting dashboard showing journey-level breakdown',
+        options: ['Reason codes exist but not mapped to journeys; reported as raw volume only','Partial mapping — some codes tied to billing or payment categories informally','Formal mapping exists; payment-related codes are separable from other contact types','Codes are mapped, reviewed monthly, and tied to a specific Journey Manager who acts on trends'] },
+      { text: 'Do you track behavioral/indirect digital signals as VoC inputs? (e.g. AutoPay opt-out rates, payment abandonment, alert opt-out rates)', artifact: 'VoC ecosystem map, GA4 reporting cadence, or email engagement review process',
+        options: ['No — digital behavioral data is not treated as a customer signal','Some behavioral data is available but not formally reviewed as VoC','At least two behavioral signals are reviewed on a defined cadence as VoC inputs','Behavioral signals are integrated into a VoC ecosystem alongside survey data; gaps are documented and owned'] },
+      { text: 'Do you have a known gap inventory — touchpoints where you currently have no VoC signal?', artifact: 'VoC ecosystem map or touchpoint coverage matrix',
+        options: ['No — gaps have not been formally identified','Gaps are informally known but not documented','A gap inventory exists; priority gaps are identified','Gap inventory is documented, prioritized, and tied to a roadmap for closing'] }
+    ]
+  },
+  {
+    id: 'D2', label: 'Signal-to-Action Pipeline',
+    subtitle: 'When you get a signal, does anything happen?',
+    logic: 'This dimension scores whether the utility has a defined, owned, time-bound process for turning customer signals into CX decisions. Data exists at most utilities. The gap is in the mechanism that converts insight into action.',
+    benchmark: 'A score of 3 on D2 is genuinely leading-quartile performance. This is the lowest-scoring dimension across the industry — the middle layer between insight and initiative is almost universally absent or informal.',
+    industryMedian: 1.5,
+    questions: [
+      { text: 'Is there a defined owner responsible for routing VoC signals to the appropriate journey or business function?', artifact: 'Job description, RACI, or org chart showing VoC routing ownership',
+        options: ['No defined owner — signals are reviewed ad hoc or not at all','Ownership is informal — one person tends to do it but it\'s not in a job description','Ownership is formally assigned (role) but the routing process is undocumented','Named owner with a documented routing process and accountability in a standing operating cadence'] },
+      { text: 'Is there a defined threshold for when a recurring signal becomes a CX pain point requiring action?', artifact: 'VoC operating procedure, pain point intake criteria, or triage documentation',
+        options: ['No threshold exists — escalation is judgment-based and inconsistent','Informal threshold exists ("if we keep seeing it") but not documented or consistently applied','A recurrence threshold is documented (e.g. appears in X% of responses or N contacts over Y weeks)','Threshold is documented, consistently applied, and tied to a time-bound disposition requirement'] },
+      { text: 'Is there a time-bound disposition requirement for identified pain points?', artifact: 'Pain point tracker, intake log, or CX operating cadence documentation',
+        options: ['No — pain points can sit indefinitely with no required response','Informal expectation exists but is not enforced or tracked','A disposition window is defined (e.g. 30 days to route or close)','Disposition window is defined, tracked, and reported in a leadership-visible format'] },
+      { text: 'Are CX pain points formally separated from IT/operational tickets in your intake process?', artifact: 'Intake form, ticketing system config, or CX vs. IT triage documentation',
+        options: ['No separation — CX issues enter the same queue as system bugs and operational requests','Informal separation — CX issues sometimes flagged differently but use the same intake path','CX pain points have a distinct intake path, but prioritization criteria are shared with IT/ops','CX pain points have a distinct intake path, distinct prioritization criteria, and a Journey Manager as routing authority'] },
+      { text: 'Do you have a documented business case template or process for advancing a CX pain point to a funded initiative?', artifact: 'Business case template, prior approved business cases, or CX intake-to-approval workflow',
+        options: ['No — business cases are built from scratch each time with no standard structure','An informal template or prior example exists but is not the standard','A standard template exists and is used consistently for CX business cases','Template exists, includes ROI modeling tied to internal cost data, and has a defined approval path'] },
+      { text: 'Can you point to at least one CX pain point in the last 12 months that moved from signal to approved initiative?', artifact: 'Approved business case with VoC sourcing noted, or initiative backlog showing signal origin',
+        options: ['No — no clear example exists','An initiative was launched but the connection to a specific VoC signal is unclear or undocumented','At least one example exists with a traceable path from signal to approval','Multiple examples exist with traceable paths; outcomes are tracked post-launch against the original signal'] }
+    ]
+  },
+  {
+    id: 'D3', label: 'Digital Payment Execution',
+    subtitle: 'Are your digital channels actually working?',
+    logic: 'This dimension scores the actual mechanics of the digital payment experience — not whether the channels exist, but whether they work reliably, communicate clearly, and hold up under the moments where trust is most fragile.',
+    benchmark: 'A score of 3 or above on D3 indicates a utility that treats digital payment execution as an ongoing managed experience rather than a completed project. Most utilities have the channels; far fewer have closed the notification and confirmation gaps inside them.',
+    industryMedian: 2.1,
+    questions: [
+      { text: 'When an AutoPay payment fails, does the customer receive a notification at the moment of failure?', artifact: 'Billing system notification config, sample failure notification, or TDS/IT confirmation of trigger behavior',
+        options: ['No notification is sent — customers discover failures through a late notice or by calling in','A notification exists but is delayed, inconsistently sent, or limited to one channel','A real-time or same-day notification is sent via at least one channel (email or SMS) for all failures','Real-time notification via preferred channel; includes direct link to resolution screen and plain-language failure context'] },
+      { text: 'Do customers receive a confirmation message when an AutoPay enrollment is completed?', artifact: 'Sample enrollment confirmation message, communication platform config, or enrollment path audit',
+        options: ['No confirmation is sent','Confirmation exists for some enrollment paths (e.g. online only) but not all (paper, phone)','Confirmation is sent for all digital enrollment paths with first payment date included','Confirmation sent across all enrollment paths; includes first payment date, payment source, and clear cancellation instructions'] },
+      { text: 'Do customers receive a payment confirmation after a one-time digital payment is processed?', artifact: 'Sample payment confirmation message or payment platform configuration',
+        options: ['No confirmation is sent','Confirmation is available on-screen only — no follow-up via email or SMS','Email or SMS confirmation is sent same-day for digital payments','Confirmation sent via preferred channel same-day; includes amount, date, and account reference'] },
+      { text: 'Is your digital payment experience consistent across web, mobile app, and IVR? (balance, past-due status, AutoPay status)', artifact: 'Channel consistency audit, cross-platform UX review, or known issue log with remediation status',
+        options: ['Known inconsistencies exist across channels and are unresolved','Inconsistencies are known and documented but not yet on a remediation path','A channel consistency audit has been completed; high-priority gaps are on a remediation roadmap','Channels are consistent; a defined audit cadence exists to catch drift'] },
+      { text: 'What share of AutoPay enrollments are completed through a digital path vs. paper or phone?', artifact: 'Enrollment channel breakdown from billing system or TDS reporting',
+        options: ['Paper or phone is the primary enrollment path; digital share is unknown or below 50%','Digital share is tracked; between 50–70% of enrollments are digital','Digital share is above 70% and actively managed toward improvement','Digital share is above 80%; paper/phone paths are exception-only with a defined redirect to digital at enrollment'] },
+      { text: 'Is your digital payment self-service completion rate tracked and reviewed on a defined cadence?', artifact: 'GA4 or analytics dashboard showing payment funnel completion, or payment platform reporting',
+        options: ['Completion rate is not tracked','Completion rate data exists in analytics but is not reviewed regularly or owned by anyone','Completion rate is tracked and reviewed monthly with a named owner','Completion rate is tracked, reviewed monthly, benchmarked against prior periods, and tied to an improvement process when it drops'] }
+    ]
+  },
+  {
+    id: 'D4', label: 'Proactive Communication',
+    subtitle: 'Are you reaching customers before they call?',
+    logic: 'This dimension scores whether the utility is using what it knows about a customer\'s account, usage, and payment behavior to get ahead of the moment — before a bill surprises them, before a payment fails, before they pick up the phone.',
+    benchmark: 'Proactive communication is the dimension where the gap between intent and execution is widest across the industry. Sending the message is not the same as sending the right message to the right place at the right time. A score of 3 indicates a utility that has moved beyond broadcast into triggered, accountable proactive engagement.',
+    industryMedian: 1.9,
+    questions: [
+      { text: 'Do you send high-bill or projected-bill alerts before the bill is issued?', artifact: 'Alert platform config, sample alert message, or opt-in rate data',
+        options: ['No proactive bill alerts exist','A high-bill alert exists but is triggered after the bill is issued, not before','A mid-cycle projected bill alert exists and is sent before bill issuance to opted-in customers','Mid-cycle projected bill alert sent before issuance; includes usage explanation or rate context; opt-in actively promoted'] },
+      { text: 'When a customer receives a high-bill notification, does it route them to content that explains the bill?', artifact: 'NBI or high-bill email template showing destination URL and routing logic',
+        options: ['No — notification links to homepage or account login only','Notification links to a general energy tips or FAQ page','Notification links to a relevant self-service tool (e.g. bill analysis, usage breakdown, rate comparison)','Notification links directly to the most relevant widget for that customer\'s account — rate plan, usage spike, or seasonal context'] },
+      { text: 'Do AutoPay customers receive a pre-debit notification before their payment is processed?', artifact: 'AutoPay communication sequence, sample pre-debit message, or enrollment flow showing notification preference step',
+        options: ['No pre-debit notification exists','Pre-debit notification exists but is opt-in with low awareness or enrollment','Pre-debit notification is available and actively promoted at AutoPay enrollment','Pre-debit notification is the default; amount, date, and payment source included; customer can pause or update before processing'] },
+      { text: 'Do you proactively reach out to customers showing early signs of payment risk before they go past due?', artifact: 'Collections outreach sequence, at-risk customer segmentation criteria, or program enrollment data from proactive campaigns',
+        options: ['No proactive outreach — collections contact begins after past-due status','Some outreach exists but is triggered by past-due status, not pre-delinquency signals','At least one proactive outreach program exists using pre-delinquency signals; includes program or assistance information','Defined pre-delinquency outreach program with segmented messaging, assistance program routing, and outcome tracking'] },
+      { text: 'Are customers informed about relevant billing programs or rate options at moments when they are most likely to act?', artifact: 'Triggered communication map, program enrollment campaign results, or moment-based messaging config',
+        options: ['Program promotion is campaign-based only — not tied to individual customer moments','Some triggered program messaging exists but limited to one channel or one program type','At least two programs are promoted via triggered, moment-based messaging tied to account events','A defined moment-based communication strategy exists across programs; triggers mapped to journey stages and reviewed for effectiveness'] },
+      { text: 'Do you track call deflection as an outcome of proactive communications?', artifact: 'Contact volume trend data correlated to communication launches, or deflection reporting in leadership scorecard',
+        options: ['No — proactive communication outcomes are not measured against contact volume','Anecdotal connection between proactive comms and call volume is noted but not formally tracked','At least one proactive communication type has a defined deflection metric tracked against contact volume','Call deflection is a standard outcome metric for proactive comms; results reported in leadership-visible format and inform future investment'] }
+    ]
+  },
+  {
+    id: 'D5', label: 'CX Governance',
+    subtitle: 'Does the work have a home?',
+    logic: 'This dimension scores whether the organizational infrastructure exists to sustain CX improvement over time. Every other dimension depends on D5 being functional. Without it, D1 through D4 are individual heroics, not a program.',
+    benchmark: 'A score of 2 on D5 is the industry median. A score of 3 means your CX program is structurally more durable than most peers regardless of where your customer satisfaction rank sits today. Answer based on observable artifacts, not intent.',
+    industryMedian: 1.7,
+    questions: [
+      { text: 'Is there a named Journey Manager or equivalent role with explicit ownership of the Billing & Payments customer experience?', artifact: 'Job description, org chart, or RACI showing B&P CX ownership',
+        options: ['No named owner — CX accountability for B&P is distributed or assumed by default','A person informally owns B&P CX but it is not in their job description or org chart','A named role exists with B&P CX in the job description; accountability is understood internally','Named Journey Manager with documented scope, defined journey ownership, and a seat in relevant cross-functional meetings'] },
+      { text: 'Is there an executive-visible CX scorecard for the Billing & Payments journey reviewed on a defined cadence?', artifact: 'Scorecard template, recurring meeting agenda, or leadership reporting cadence showing B&P CX as a standing item',
+        options: ['No scorecard exists — CX performance is reported informally or only when scores arrive from a vendor','CX metrics are included in broader operational reporting but not structured as a journey-level scorecard','A B&P journey scorecard exists and is presented to leadership at least quarterly','Scorecard is presented monthly, includes experience, operational, and trust dimensions, tied to a standing leadership agenda item'] },
+      { text: 'Is there a defined intake and approval process for CX improvement initiatives in the Billing & Payments journey?', artifact: 'Business case template, approval workflow documentation, or intake process showing CX-specific path',
+        options: ['No defined process — CX initiatives compete for attention informally alongside all other requests','An informal process exists; business cases built case-by-case with no standard structure or approval path','A standard business case template exists with a defined approval authority for CX initiatives','Defined intake process, standard template, named approval authority, and documented path from approval to IT/TDS execution'] },
+      { text: 'Is there a standing operating cadence between the CX function and TDS/IT/Operations for B&P journey work?', artifact: 'Standing meeting invite, backlog documentation, or handoff protocol showing CX-to-TDS workflow',
+        options: ['No standing meeting — CX requests to TDS/IT are ad hoc','Meetings occur but are project-specific, not a standing cadence','A standing meeting exists between CX and TDS/IT on at least a monthly basis','Standing monthly cadence with a maintained backlog, defined prioritization criteria, and documented CX-to-IT handoff protocol'] },
+      { text: 'Are CX improvement outcomes tracked after implementation and reported back to the approving authority?', artifact: 'Post-launch results report, KPI tracking dashboard, or closed-loop reporting tied to an approved business case',
+        options: ['No post-launch tracking — initiatives ship and outcomes are not formally measured','Some outcomes are tracked but reporting is informal and not tied to the original business case','Post-launch outcomes are tracked against KPIs defined in the original business case','Outcomes tracked against original KPIs, reported to the approving authority at defined intervals, and inform future prioritization'] },
+      { text: 'Does CX have a defined voice in technology and vendor decisions that affect the Billing & Payments journey?', artifact: 'Project charter, steering committee membership, or requirements documentation showing CX as a named contributor',
+        options: ['CX is not formally included in technology or vendor decisions affecting the B&P journey','CX is consulted informally or after decisions are made','CX is included in scoping and requirements for major B&P technology decisions','CX has a defined seat in technology governance — requirements, customer impact assessment, and communication planning are standard CX deliverables in any major platform change'] }
+    ]
+  },
+  {
+    id: 'D6', label: 'Operational Enablement',
+    subtitle: 'Can your org reliably deliver the payment experience at scale?',
+    logic: 'This dimension scores the operational backbone that makes the customer-facing experience real — the people, processes, controls, and visibility that determine whether what\'s supposed to happen actually happens consistently at scale.',
+    benchmark: 'Utilities frequently diagnose B&P problems as digital or communication failures when the root cause is operational. A score of 3 or above on D6 indicates a utility that understands this distinction — and has built the backbone to sustain the experience it promises.',
+    industryMedian: 2.0,
+    questions: [
+      { text: 'Do frontline CSRs have the tools, access, and training to resolve the most common Billing & Payments contacts without escalation?', artifact: 'CSR tool config, training curriculum, knowledge base, or contact resolution rate by reason code',
+        options: ['CSRs lack consistent access to payment history, AutoPay status, or account balance; resolution requires escalation or system switching','Core payment data is accessible but training is inconsistent; resolution quality varies by rep','CSRs have consistent access to payment data and receive structured training on top B&P contact scenarios','CSRs have a single-view portal for payment data, structured training on top scenarios, and a maintained knowledge base updated when experiences or policies change'] },
+      { text: 'Are there defined workflows for payment exceptions — failed payments, reversals, disputes, and returned items?', artifact: 'Exception handling documentation, workflow diagrams, or SLA tracking report',
+        options: ['Exception handling is ad hoc — no documented workflows exist','Workflows exist informally; resolution depends on individual rep knowledge','Documented workflows exist for the most common exception types; ownership is assigned','Documented workflows for all major exception types; ownership assigned, SLAs defined, and exception volume tracked on a defined cadence'] },
+      { text: 'Is payment data consistent and trustworthy across all customer-facing channels? (balance, AutoPay status, payment history)', artifact: 'Reconciliation process documentation, channel consistency audit, or known issue log with remediation status',
+        options: ['Known inconsistencies exist across channels; customers and CSRs see different data','Inconsistencies are documented but root cause is unclear or remediation is not resourced','A reconciliation process exists; major inconsistencies are identified and on a remediation path','Reconciliation process runs on a defined cadence; channel consistency is audited regularly; discrepancies trigger a defined resolution workflow'] },
+      { text: 'Is payment operations performance measured and reported on a defined cadence? (e.g. AutoPay failure rate, posting time, exception volume)', artifact: 'Operational dashboard, monthly report, or performance review cadence documentation',
+        options: ['Operational performance metrics are not tracked or reported consistently','Some metrics are tracked but live in separate systems with no consolidated view','A consolidated operational dashboard or report exists; reviewed at least monthly by a named owner','Consolidated dashboard reviewed monthly; metrics trended over time, benchmarked against prior periods, tied to improvement actions when thresholds are breached'] },
+      { text: 'When a digital payment experience or policy changes, is there a defined process for updating CSR training, knowledge bases, and customer-facing content simultaneously?', artifact: 'Change management checklist, launch readiness template, or CSR communication cadence tied to recent payment experience changes',
+        options: ['No defined process — updates happen informally and inconsistently across channels','Some coordination exists but it is reactive; CSRs often learn about changes from customers','A change communication process exists for major payment changes; CSR training and customer content updated before launch','Defined change management process for all payment experience changes; CSR enablement, knowledge base update, and customer communication are standard pre-launch deliverables'] },
+      { text: 'Is automation used in the Billing & Payments journey monitored for performance and customer impact? (e.g. AutoPay processing, dunning sequences, alert delivery)', artifact: 'Automation monitoring dashboard, performance review cadence, or anomaly response documentation',
+        options: ['Automation runs without defined monitoring — failures discovered reactively','Some monitoring exists but is system-health focused rather than customer-outcome focused','Key automated processes have defined performance metrics reviewed on a regular cadence','Automated processes monitored for both system performance and customer outcomes; anomalies trigger a defined response workflow; results feed back into CX improvement priorities'] }
+    ]
+  }
+];
+
+// ── PRIORITY RECOMMENDATIONS ──────────────────
+const PRIORITY_DATA = {
+  D1: {
+    title: 'Establish VoC at the Moments That Matter',
+    type: 'optimize',
+    desc: 'Your utility is operating without reliable customer signal at the payment touchpoints where trust is built or broken. Before any other CX investment, you need ears at the right moments — particularly AutoPay events and digital payment completion.',
+    timelines: {
+      t30: 'Audit current VoC touchpoints; identify top 3 signal gaps in B&P journey',
+      t60: 'Deploy transactional survey at highest-volume digital payment touchpoint; establish review cadence',
+      t90: 'Map behavioral signals (abandonment, opt-out rates) as VoC inputs; document gap inventory'
+    },
+    peer: 'Leading utilities integrate behavioral digital signals — AutoPay cancellation trends, alert opt-out rates, payment abandonment — alongside transactional survey data into a unified VoC ecosystem reviewed on a monthly cadence.'
+  },
+  D2: {
+    title: 'Build the Signal-to-Action Pipeline',
+    type: 'build',
+    desc: 'You have data but no defined mechanism for converting it into decisions. The most important infrastructure investment in CX is not a new survey or dashboard — it is a documented, owned process that connects insight to action with a time-bound disposition.',
+    timelines: {
+      t30: 'Define and document pain point intake criteria and recurrence threshold',
+      t60: 'Assign named owner for VoC routing; separate CX intake from IT/ops ticketing path',
+      t90: 'Complete first business case using standard template; establish 30-day disposition cadence'
+    },
+    peer: 'Utilities with mature Signal-to-Action pipelines define a recurrence threshold, a time-bound disposition window, and a separate CX intake path from IT operations — with a Journey Manager as the routing authority at each stage.'
+  },
+  D3: {
+    title: 'Close the Notification and Confirmation Gap',
+    type: 'optimize',
+    desc: 'The highest-severity trust events in the B&P journey — silent AutoPay failures, unanswered enrollment questions, no confirmation after payment — are configuration and content gaps, not new builds. These are fixable in weeks, not quarters.',
+    timelines: {
+      t30: 'Audit AutoPay failure notification coverage and enrollment confirmation across all paths',
+      t60: 'Launch real-time failure notification and enrollment confirmation via email/SMS',
+      t90: 'Complete channel consistency audit; deploy payment confirmation for one-time digital payments'
+    },
+    peer: 'Evergy\'s sustained investment in digital payment execution — including real-time confirmation messaging and two-click payment redesign — drove digital adoption above 80% and is treated as an ongoing managed experience, not a completed project.'
+  },
+  D4: {
+    title: 'Activate Moment-Based Proactive Communication',
+    type: 'optimize',
+    desc: 'Most utilities have a high-bill alert. Few have connected it to the right destination, made pre-debit notification a default, or built a pre-delinquency outreach capability that gets ahead of arrears before collections mechanics engage.',
+    timelines: {
+      t30: 'Audit routing destination of all existing proactive communications; identify misalignment',
+      t60: 'Fix routing on highest-volume proactive alert to link to relevant self-service tool',
+      t90: 'Activate pre-debit notification for AutoPay customers; establish deflection tracking baseline'
+    },
+    peer: 'Con Edison\'s personalized video program and CPS Energy\'s CORE outreach both demonstrate that moment-based communication drives measurable enrollment and deflection outcomes — but only when routing logic and outcome tracking are built in from the start.'
+  },
+  D5: {
+    title: 'Formalize CX Governance Infrastructure',
+    type: 'build',
+    desc: 'Without named ownership, a visible scorecard, and a defined path from insight to approved initiative, every improvement in D1–D4 is dependent on individual heroics rather than organizational structure. Governance is what makes CX work survivable.',
+    timelines: {
+      t30: 'Document current CX ownership; identify gaps in accountability vs. org chart',
+      t60: 'Establish executive-visible B&P scorecard on monthly cadence; define standing CX-to-IT meeting',
+      t90: 'Formalize business case template and approval path; document CX seat in tech governance'
+    },
+    peer: 'Utilities producing repeatable CX wins — Evergy, Consumers Energy, Con Edison — all share a common structural trait: CX has a named seat, a standing operating cadence, and closed-loop reporting. None of those outcomes were produced by motivated individuals working around absent infrastructure.'
+  },
+  D6: {
+    title: 'Strengthen the Operational Backbone',
+    type: 'build',
+    desc: 'Customer-facing experience improvements only hold if the operational infrastructure beneath them is reliable. CSR tools, exception workflows, data reconciliation, and change management processes determine whether the experience you design is the experience customers receive.',
+    timelines: {
+      t30: 'Audit CSR tools and training for top 5 B&P contact scenarios; identify resolution gaps',
+      t60: 'Document exception handling workflows for failed payments and reversals; assign ownership',
+      t90: 'Establish consolidated operations performance dashboard; implement change management checklist for experience updates'
+    },
+    peer: 'TEP\'s digital wallet success required frontline CSRs actively promoting and operationalizing new channels during calls. Con Edison\'s billing work required three-way daily reconciliation and a specialist portal before the customer-facing experience could be trusted at scale.'
+  }
+};
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let currentDim = 0;
+let answers = {}; // { D1: [scores], D2: [scores], ... }
+let confidence = {}; // { D1: 'high'|'mixed'|'self', ... }
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+function startAssessment() {
+  DIMENSIONS.forEach(d => {
+    answers[d.id] = new Array(d.questions.length).fill(null);
+    confidence[d.id] = 'self';
+  });
+  currentDim = 0;
+  showScreen('assessment');
+  renderDimension(0);
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════════
+// ASSESSMENT RENDERING
+// ══════════════════════════════════════════════
+function renderDimension(dimIdx) {
+  const dim = DIMENSIONS[dimIdx];
+  const totalQ = DIMENSIONS.reduce((s,d) => s + d.questions.length, 0);
+  const answeredBefore = DIMENSIONS.slice(0, dimIdx).reduce((s,d) => s + d.questions.length, 0);
+  const answeredInThis = answers[dim.id].filter(a => a !== null).length;
+  const totalAnswered = answeredBefore + answeredInThis;
+  const pct = Math.round((totalAnswered / totalQ) * 100);
+
+  document.getElementById('progressDimLabel').textContent = dim.id + ' | ' + dim.label;
+  document.getElementById('progressDimRight').textContent = 'Dimension ' + (dimIdx+1) + ' of ' + DIMENSIONS.length;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  let html = `
+    <div class="dimension-header">
+      <div class="dimension-tag">
+        <div class="dimension-number">${dimIdx+1}</div>
+        ${dim.id} | ${dim.label}
+      </div>
+      <div class="dimension-title">${dim.label}</div>
+      <div class="dimension-subtitle">${dim.subtitle}</div>
+      <div class="dimension-logic">${dim.logic}</div>
+    </div>
+  `;
+
+  dim.questions.forEach((q, qIdx) => {
+    const selected = answers[dim.id][qIdx];
+    html += `
+      <div class="question-card">
+        <div class="question-top">
+          <div class="question-num">Question ${qIdx+1} of ${dim.questions.length}</div>
+          <div class="question-text">${q.text}</div>
+          <div class="question-artifact">
+            <span class="artifact-label">Evidence</span>
+            <span>${q.artifact}</span>
+          </div>
+        </div>
+        <div class="question-options">
+    `;
+    q.options.forEach((opt, oIdx) => {
+      const score = oIdx + 1;
+      const sel = selected === score ? 'selected' : '';
+      html += `
+        <div class="option-row ${sel}" onclick="selectAnswer(${dimIdx},${qIdx},${score})">
+          <div class="option-radio"></div>
+          <div class="option-score">${score}</div>
+          <div class="option-text">${opt}</div>
+        </div>
+      `;
+    });
+    html += `</div></div>`;
+  });
+
+  // Confidence selector
+  const conf = confidence[dim.id] || 'self';
+  html += `
+    <div class="confidence-section">
+      <div class="confidence-label">Evidence Confidence | How are your answers for this dimension supported?</div>
+      <div class="confidence-options">
+        <button class="conf-btn ${conf==='high'?'selected':''}" onclick="setConfidence('${dim.id}','high')">Artifact-backed — I can show the document</button>
+        <button class="conf-btn ${conf==='mixed'?'selected':''}" onclick="setConfidence('${dim.id}','mixed')">Mixed — some artifacts, some judgment</button>
+        <button class="conf-btn ${conf==='self'?'selected':''}" onclick="setConfidence('${dim.id}','self')">Self-report — based on my knowledge</button>
+      </div>
+    </div>
+  `;
+
+  // Nav
+  const answered = answers[dim.id].filter(a => a !== null).length;
+  const allAnswered = answered === dim.questions.length;
+  const isLast = dimIdx === DIMENSIONS.length - 1;
+
+  html += `
+    <div class="dimension-nav">
+      <button class="btn-nav btn-prev" onclick="navDim(-1)" ${dimIdx===0?'style="visibility:hidden"':''}>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="13" y1="8" x2="3" y2="8"/><polyline points="7,4 3,8 7,12"/></svg>
+        Previous
+      </button>
+      <div class="nav-completion"><span>${answered}</span> of ${dim.questions.length} answered</div>
+      <button class="btn-nav btn-next" onclick="${isLast?'generateResults()':'navDim(1)'}" ${!allAnswered?'disabled':''}>
+        ${isLast?'View My Report':'Next Dimension'}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
+    </div>
+  `;
+
+  document.getElementById('assessmentBody').innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+function selectAnswer(dimIdx, qIdx, score) {
+  const dimId = DIMENSIONS[dimIdx].id;
+  answers[dimId][qIdx] = score;
+  renderDimension(dimIdx);
+}
+
+function setConfidence(dimId, level) {
+  confidence[dimId] = level;
+  renderDimension(currentDim);
+}
+
+function navDim(dir) {
+  currentDim = Math.max(0, Math.min(DIMENSIONS.length-1, currentDim + dir));
+  renderDimension(currentDim);
+}
+
+// ══════════════════════════════════════════════
+// SCORING
+// ══════════════════════════════════════════════
+function getDimScore(dimId) {
+  const scores = answers[dimId].filter(s => s !== null);
+  if (!scores.length) return 0;
+  return scores.reduce((a,b) => a+b, 0) / scores.length;
+}
+
+function getMaturity(score) {
+  if (score < 1.75) return { label: 'Reactive', badge: 'badge-reactive' };
+  if (score < 2.5) return { label: 'Aware', badge: 'badge-aware' };
+  if (score < 3.25) return { label: 'Structured', badge: 'badge-structured' };
+  return { label: 'Leading', badge: 'badge-leading' };
+}
+
+function getBarColor(score) {
+  if (score < 1.75) return '#E53E3E';
+  if (score < 2.5) return '#C9A84C';
+  if (score < 3.25) return '#4A6FA5';
+  return '#1A7A44';
+}
+
+function getOverallDesc(avg) {
+  if (avg < 1.75) return 'Your Billing & Payments journey is operating reactively — responding to customer issues after they escalate rather than preventing them. The foundation for systematic CX improvement is not yet in place. The opportunity ahead is significant.';
+  if (avg < 2.5) return 'Your organization is aware of the right priorities and has made progress in several areas, but execution is inconsistent and infrastructure gaps remain. Targeted investment in your lowest-scoring dimensions will produce outsized results.';
+  if (avg < 3.25) return 'Your Billing & Payments journey is structured and systematically managed. You have the foundation to produce repeatable CX wins. Closing remaining gaps will move you into leading-quartile performance against Chartwell industry benchmarks.';
+  return 'Your Billing & Payments CX operation is performing at a leading level. You have the infrastructure, measurement, and governance to sustain improvement and benchmark favorably against top-quartile peers. Focus on maintaining cadence and closing remaining gaps.';
+}
+
+// ══════════════════════════════════════════════
+// RESULTS GENERATION
+// ══════════════════════════════════════════════
+function generateResults() {
+  const name = document.getElementById('userName').value || 'CX Director';
+  const utility = document.getElementById('utilityName').value || 'Your Utility';
+  const role = document.getElementById('userRole').value || 'CX Leader';
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  const dimScores = DIMENSIONS.map(d => ({ ...d, score: getDimScore(d.id), maturity: getMaturity(getDimScore(d.id)), conf: confidence[d.id] }));
+  const overallAvg = dimScores.reduce((s,d) => s+d.score, 0) / dimScores.length;
+  const overallMaturity = getMaturity(overallAvg);
+
+  // Header
+  document.getElementById('resultsTitle').textContent = utility + ' | B&P Journey Readiness Report';
+  document.getElementById('resultsSubtitle').textContent = 'Billing & Payments Customer Journey | ' + dateStr;
+  document.getElementById('metaName').textContent = name;
+  document.getElementById('metaUtility').textContent = utility;
+  document.getElementById('metaRole').textContent = role;
+  document.getElementById('metaDate').textContent = dateStr;
+  document.getElementById('overallScoreNum').innerHTML = overallAvg.toFixed(1) + '<span class="overall-score-denom">/4.0</span>';
+  document.getElementById('overallScoreLabel').textContent = overallMaturity.label;
+  document.getElementById('overallScoreDesc').textContent = getOverallDesc(overallAvg);
+
+  // Dimension scores panel
+  let dimHtml = `<div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:20px;">Dimension Scores | Industry Median in Gray</div>`;
+  dimScores.forEach(d => {
+    const barPct = (d.score / 4) * 100;
+    const medianPct = (d.industryMedian / 4) * 100;
+    const confLabel = d.conf === 'high' ? 'Artifact' : d.conf === 'mixed' ? 'Mixed' : 'Self-report';
+    const confClass = d.conf === 'high' ? 'conf-high' : d.conf === 'mixed' ? 'conf-mixed' : 'conf-self';
+    dimHtml += `
+      <div class="dim-score-row">
+        <div class="dim-score-name">
+          <div class="dim-score-label">${d.label}</div>
+          <div class="dim-score-sublabel">${d.id}</div>
+        </div>
+        <div class="dim-score-bar-wrap">
+          <div class="dim-score-bar-track">
+            <div class="dim-score-bar-fill" style="width:0%;background:${getBarColor(d.score)}" data-target="${barPct}"></div>
+            <div style="position:absolute;top:0;bottom:0;left:${medianPct}%;width:2px;background:var(--border-dark);"></div>
+          </div>
+          <div class="dim-score-benchmark">Median: ${d.industryMedian.toFixed(1)}</div>
+        </div>
+        <div class="dim-score-value">${d.score.toFixed(1)}</div>
+        <div class="dim-maturity-badge ${d.maturity.badge}">${d.maturity.label}</div>
+        <div class="conf-indicator ${confClass}">${confLabel}</div>
+      </div>
+    `;
+  });
+  document.getElementById('dimScoresPanel').innerHTML = dimHtml;
+
+  // Radar chart
+  drawRadar(dimScores);
+
+  // Priority stack — bottom 3 dimensions
+  const sorted = [...dimScores].sort((a,b) => a.score - b.score);
+  const top3 = sorted.slice(0, 3);
+  let priorityHtml = '';
+  top3.forEach((d, i) => {
+    const rec = PRIORITY_DATA[d.id];
+    const typeClass = rec.type === 'optimize' ? 'type-optimize' : 'type-build';
+    const typeLabel = rec.type === 'optimize' ? 'Optimize' : 'Build';
+    const priorityClass = ['priority-1','priority-2','priority-3'][i];
+    priorityHtml += `
+      <div class="priority-card ${priorityClass}">
+        <div class="priority-tag">
+          <span class="priority-num">Priority ${i+1}</span>
+          <span class="priority-type ${typeClass}">${typeLabel}</span>
+          <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-dim);letter-spacing:0.06em;">${d.id} | Score: ${d.score.toFixed(1)}</span>
+        </div>
+        <div class="priority-title">${rec.title}</div>
+        <div class="priority-desc">${rec.desc}</div>
+        <div class="timeline-strip">
+          <div class="timeline-item">
+            <div class="timeline-period">30 Days</div>
+            <div class="timeline-action">${rec.timelines.t30}</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">60 Days</div>
+            <div class="timeline-action">${rec.timelines.t60}</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">90 Days</div>
+            <div class="timeline-action">${rec.timelines.t90}</div>
+          </div>
+        </div>
+        <div class="peer-benchmark">
+          <span class="peer-label">Leading Quartile Benchmark</span>
+          ${rec.peer}
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById('priorityStack').innerHTML = priorityHtml;
+
+  // Next steps
+  const nextSteps = {
+    t30: top3.map(d => PRIORITY_DATA[d.id].timelines.t30),
+    t60: top3.map(d => PRIORITY_DATA[d.id].timelines.t60),
+    t90: top3.map(d => PRIORITY_DATA[d.id].timelines.t90)
+  };
+  let nextHtml = '';
+  ['t30','t60','t90'].forEach((period, i) => {
+    const labels = ['30 Days | Diagnose & Align', '60 Days | Execute Quick Wins', '90 Days | Measure & Expand'];
+    nextHtml += `
+      <div class="next-step-card">
+        <div class="next-step-period">${labels[i]}</div>
+        <ul class="next-step-items">
+          ${nextSteps[period].map(s => `<li>${s}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  });
+  document.getElementById('nextStepsGrid').innerHTML = nextHtml;
+
+  showScreen('results');
+
+  // Animate bars after render
+  setTimeout(() => {
+    document.querySelectorAll('.dim-score-bar-fill').forEach(bar => {
+      bar.style.width = bar.getAttribute('data-target') + '%';
+    });
+  }, 200);
+}
+
+// ══════════════════════════════════════════════
+// RADAR CHART
+// ══════════════════════════════════════════════
+function drawRadar(dimScores) {
+  const svg = document.getElementById('radarChart');
+  const cx = 170, cy = 160, r = 120;
+  const levels = 4;
+  const n = dimScores.length;
+  const angleStep = (Math.PI * 2) / n;
+
+  function polar(angle, radius) {
+    return {
+      x: cx + radius * Math.sin(angle),
+      y: cy - radius * Math.cos(angle)
+    };
+  }
+
+  let html = '';
+
+  // Grid rings
+  for (let l = 1; l <= levels; l++) {
+    const rr = (r / levels) * l;
+    let pts = '';
+    for (let i = 0; i < n; i++) {
+      const p = polar(i * angleStep, rr);
+      pts += `${p.x},${p.y} `;
+    }
+    html += `<polygon points="${pts}" fill="none" stroke="#E2E0DC" stroke-width="1"/>`;
+    if (l < levels) {
+      html += `<text x="${cx+4}" y="${cy - rr + 3}" font-size="8" fill="#9999AA" font-family="DM Mono,monospace">${l}</text>`;
+    }
+  }
+
+  // Spokes
+  for (let i = 0; i < n; i++) {
+    const p = polar(i * angleStep, r);
+    html += `<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#E2E0DC" stroke-width="1"/>`;
+  }
+
+  // Industry median polygon
+  let medPts = '';
+  dimScores.forEach((d, i) => {
+    const rr = (d.industryMedian / 4) * r;
+    const p = polar(i * angleStep, rr);
+    medPts += `${p.x},${p.y} `;
+  });
+  html += `<polygon points="${medPts}" fill="rgba(200,196,190,0.15)" stroke="#C8C4BE" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+
+  // User score polygon
+  let userPts = '';
+  dimScores.forEach((d, i) => {
+    const rr = (d.score / 4) * r;
+    const p = polar(i * angleStep, rr);
+    userPts += `${p.x},${p.y} `;
+  });
+  html += `<polygon points="${userPts}" fill="rgba(0,30,56,0.1)" stroke="#001E38" stroke-width="2"/>`;
+
+  // Dots
+  dimScores.forEach((d, i) => {
+    const rr = (d.score / 4) * r;
+    const p = polar(i * angleStep, rr);
+    html += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#001E38"/>`;
+  });
+
+  // Labels
+  dimScores.forEach((d, i) => {
+    const angle = i * angleStep;
+    const labelR = r + 22;
+    const p = polar(angle, labelR);
+    const anchor = Math.abs(p.x - cx) < 10 ? 'middle' : p.x < cx ? 'end' : 'start';
+    html += `<text x="${p.x}" y="${p.y}" text-anchor="${anchor}" dominant-baseline="middle" font-size="10" font-family="DM Mono,monospace" fill="#3D3D5C" letter-spacing="0">${d.id}</text>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+function retake() {
+  answers = {};
+  confidence = {};
+  document.getElementById('userName').value = '';
+  document.getElementById('utilityName').value = '';
+  document.getElementById('userRole').value = '';
+  showScreen('intro');
+}
+</script>
+</body>
+</html>
